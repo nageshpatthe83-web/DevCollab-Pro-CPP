@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevCollab Pro | C++ Multi-Dimensional Code Evaluation & Hackathon Platform</title>
+  <meta name="description" content="DevCollab Pro: High-performance code evaluation, version delta storage, and empirical algorithm profiler built 100% in C++ and Object-Oriented Architecture.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">DevCollab<span class="gradient-text">Pro</span></span>
+          <span class="badge cpp-badge">Native C++14</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-btn active" data-tab="dashboard-tab" id="btn-tab-dashboard">
+          <span class="icon">📊</span> Dashboard
+        </button>
+        <button class="nav-btn" data-tab="codesentry-tab" id="btn-tab-codesentry">
+          <span class="icon">🛡️</span> CodeSentry (OOP)
+        </button>
+        <button class="nav-btn" data-tab="algopro-tab" id="btn-tab-algopro">
+          <span class="icon">⚡</span> AlgoPro (DSA)
+        </button>
+        <button class="nav-btn" data-tab="codevault-tab" id="btn-tab-codevault">
+          <span class="icon">📦</span> CodeVault (VCS/DBMS)
+        </button>
+        <button class="nav-btn" data-tab="leaderboard-tab" id="btn-tab-leaderboard">
+          <span class="icon">🏆</span> Leaderboard (Max-Heap)
+        </button>
+      </nav>
+
+      <div class="server-status-pill">
+        <span class="status-dot pulsing"></span>
+        <span id="backend-status-text">C++ Backend Active</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- Hero / Metrics Banner -->
+    <section class="metrics-banner">
+      <div class="metric-card">
+        <div class="metric-label">Project Team</div>
+        <div class="metric-val" id="metric-team">Group SY06 (VIT)</div>
+        <div class="metric-sub">Guide: Dr. Yogesh Sharma</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">OOP Design Patterns</div>
+        <div class="metric-val text-violet">5 Patterns</div>
+        <div class="metric-sub">Strategy, Visitor, Factory, Observer, Singleton</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Delta Storage Savings</div>
+        <div class="metric-val text-emerald" id="metric-savings">64.8%</div>
+        <div class="metric-sub">Myers line-diff vs raw storage</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">DSA Ranking Engine</div>
+        <div class="metric-val text-cyan">Max-Heap</div>
+        <div class="metric-sub">O(log n) live score updates</div>
+      </div>
+    </section>
+
+    <!-- TAB 1: DASHBOARD & ARCHITECTURE -->
+    <section id="dashboard-tab" class="tab-pane active">
+      <div class="section-header">
+        <div>
+          <h2>System Architecture & Pillars</h2>
+          <p>DevCollab Pro replaces manual hackathon reviews with a 100% pure C++ Object-Oriented multi-dimensional engine.</p>
+        </div>
+        <button class="action-btn" id="btn-refresh-status">Refresh Status</button>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon bg-violet">🛡️</div>
+          <h3>CodeSentry (OOP)</h3>
+          <p class="pillar-desc">Automated static code quality analyzer powered by 5 design patterns and AST visitation.</p>
+          <ul class="pillar-features">
+            <li><strong>Strategy Pattern:</strong> Modular analysis rules</li>
+            <li><strong>Visitor Pattern:</strong> AST traversal for metrics</li>
+            <li><strong>Factory Pattern:</strong> Multi-language analyzer factory</li>
+            <li>Cyclomatic complexity & maintainability index</li>
+          </ul>
+          <button class="card-action-btn" onclick="switchTab('codesentry-tab')">Launch CodeSentry →</button>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon bg-cyan">⚡</div>
+          <h3>AlgoPro (DSA)</h3>
+          <p class="pillar-desc">Empirical Big-O performance tracer fitting execution timings against theoretical curves.</p>
+          <ul class="pillar-features">
+            <li>Times execution across scaling inputs (N)</li>
+            <li>Counts comparisons, swaps, operations</li>
+            <li>Power-law regression curve fitting O(1) to O(N²)</li>
+            <li>Priority Queue & Max-Heap ranking updates</li>
+          </ul>
+          <button class="card-action-btn" onclick="switchTab('algopro-tab')">Explore AlgoPro →</button>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon bg-emerald">📦</div>
+          <h3>CodeVault (DBMS & VCS)</h3>
+          <p class="pillar-desc">Git-like version control database implementing Myers delta-storage and 3-way merge conflict detection.</p>
+          <ul class="pillar-features">
+            <li>Stores only incremental changes (saving 60%+)</li>
+            <li>SHA/FNV-1a commit hash integrity</li>
+            <li>3-way merge conflict detector for teams</li>
+            <li>Commit DAG and timeline history</li>
+          </ul>
+          <button class="card-action-btn" onclick="switchTab('codevault-tab')">Open CodeVault →</button>
+        </div>
+      </div>
+
+      <!-- Formula breakdown card -->
+      <div class="info-card">
+        <h3>Multi-Dimensional Composite Scoring Model</h3>
+        <p>The platform aggregates objective automated metrics with faculty judge rubrics to establish a fair 100-point composite score:</p>
+        <div class="formula-chips">
+          <span class="chip">Functionality: <strong>30%</strong></span>
+          <span class="chip">Code Quality: <strong>15%</strong></span>
+          <span class="chip">Performance: <strong>10%</strong></span>
+          <span class="chip">Database: <strong>10%</strong></span>
+          <span class="chip">Documentation: <strong>10%</strong></span>
+          <span class="chip">Security: <strong>5%</strong></span>
+          <span class="chip highlight">Innovation (Judge): <strong>10%</strong></span>
+          <span class="chip highlight">UI/UX (Judge): <strong>5%</strong></span>
+          <span class="chip highlight">Presentation (Judge): <strong>5%</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: CODESENTRY (OOP STATIC QUALITY ANALYZER) -->
+    <section id="codesentry-tab" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>CodeSentry Quality Studio (OOP AST Analyzer)</h2>
+          <p>Inspects source code for Cyclomatic Complexity, security vulnerabilities, anti-patterns, and calculates Maintainability Index.</p>
+        </div>
+        <div class="sample-actions">
+          <button class="secondary-btn" id="btn-sample-clean">Load Clean Code</button>
+          <button class="secondary-btn" id="btn-sample-smelly">Load Complex/Smelly Code</button>
+        </div>
+      </div>
+
+      <div class="editor-layout">
+        <div class="editor-panel">
+          <div class="panel-header">
+            <span>Source Code (C++ / OOP)</span>
+            <div class="editor-controls">
+              <select id="select-language" class="styled-select">
+                <option value="cpp">C++ (Default)</option>
+                <option value="c">C</option>
+                <option value="java">Java</option>
+              </select>
+              <button class="action-btn" id="btn-run-evaluation">Run Evaluation Engine</button>
+            </div>
+          </div>
+          <div class="metadata-row">
+            <input type="text" id="input-team-name" class="styled-input" placeholder="Team Name (e.g. SY06 Innovators)" value="Team SY06">
+            <input type="text" id="input-project-name" class="styled-input" placeholder="Project Name" value="DevCollab Core Service">
+            <input type="text" id="input-author" class="styled-input" placeholder="Author Name" value="Nagesh Patthe">
+          </div>
+          <textarea id="code-editor" class="code-textarea" spellcheck="false"></textarea>
+        </div>
+
+        <div class="results-panel">
+          <div class="panel-header">
+            <span>Evaluation Results</span>
+            <span class="badge" id="eval-status-badge">Awaiting Evaluation</span>
+          </div>
+
+          <div id="eval-summary" class="eval-metrics-grid">
+            <div class="eval-metric-box">
+              <span class="label">Composite Score</span>
+              <span class="val highlight" id="eval-composite-score">--</span>
+            </div>
+            <div class="eval-metric-box">
+              <span class="label">Maintainability Index</span>
+              <span class="val" id="eval-maintainability">--</span>
+            </div>
+            <div class="eval-metric-box">
+              <span class="label">Cyclomatic Complexity</span>
+              <span class="val" id="eval-complexity">--</span>
+            </div>
+            <div class="eval-metric-box">
+              <span class="label">Empirical Complexity</span>
+              <span class="val" id="eval-algo-complexity">--</span>
+            </div>
+          </div>
+
+          <div class="score-breakdown-card">
+            <h4>Component Breakdown</h4>
+            <div class="breakdown-bars" id="score-breakdown-bars">
+              <!-- Dynamically populated -->
+              <p class="placeholder-text">Run evaluation to inspect component-wise scoring breakdown.</p>
+            </div>
+          </div>
+
+          <div class="issues-card">
+            <h4>Code Quality & Security Findings (<span id="issues-count">0</span>)</h4>
+            <div id="issues-list" class="issues-container">
+              <p class="placeholder-text">No issues scanned yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ALGOPRO (DSA PERFORMANCE PROFILER) -->
+    <section id="algopro-tab" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>AlgoPro Empirical Performance Tracer (DSA)</h2>
+          <p>Empirically traces algorithm execution across varying input sizes $N$, recording comparisons, swaps, and execution microseconds to classify Big-O complexity.</p>
+        </div>
+        <div class="profile-controls">
+          <select id="select-algo" class="styled-select">
+            <option value="quick_sort">QuickSort (Divide & Conquer)</option>
+            <option value="merge_sort">MergeSort (Divide & Conquer)</option>
+            <option value="bubble_sort">BubbleSort (Quadratic O(N²))</option>
+            <option value="binary_search">BinarySearch (Logarithmic O(log N))</option>
+            <option value="linear_search">LinearSearch (Linear O(N))</option>
+          </select>
+          <button class="action-btn" id="btn-run-profile">Run Empirical Profiler</button>
+        </div>
+      </div>
+
+      <div class="profile-layout">
+        <div class="profile-chart-panel">
+          <div class="panel-header">
+            <span>Execution Growth Curve vs Input Size (N)</span>
+            <span class="badge text-cyan" id="profile-fit-badge">Complexity: --</span>
+          </div>
+          <div class="chart-container">
+            <svg id="profile-chart" class="svg-chart" viewBox="0 0 700 320">
+              <text x="350" y="160" text-anchor="middle" fill="#64748b">Click 'Run Empirical Profiler' to execute benchmarks</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="profile-data-panel">
+          <div class="panel-header">
+            <span>Benchmark Measurements</span>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="profile-data-table">
+              <thead>
+                <tr>
+                  <th>Input Size (N)</th>
+                  <th>Time (µs)</th>
+                  <th>Comparisons</th>
+                  <th>Swaps / Writes</th>
+                </tr>
+              </thead>
+              <tbody id="profile-table-body">
+                <tr><td colspan="4" class="text-center text-muted">No benchmark runs yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="algo-explanation-box" id="algo-notes">
+            <h4>Algorithm Insight</h4>
+            <p>Select an algorithm above to empirically profile its computational growth curve in native C++.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CODEVAULT (VCS & DELTA STORAGE) -->
+    <section id="codevault-tab" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>CodeVault Version Control & Delta Storage (DBMS)</h2>
+          <p>Stores software versions efficiently using Myers line-based delta compression (saving 60%+ storage over raw copies) and tracks commit history.</p>
+        </div>
+      </div>
+
+      <div class="vcs-layout">
+        <div class="vcs-commit-panel">
+          <div class="panel-header">
+            <span>Create New Commit</span>
+          </div>
+          <div class="commit-form">
+            <input type="text" id="commit-author" class="styled-input" placeholder="Author" value="Nagesh Patthe">
+            <input type="text" id="commit-message" class="styled-input" placeholder="Commit message (e.g., Optimized QuickSort partition logic)">
+            <textarea id="commit-code" class="code-textarea small" placeholder="Enter updated code content to commit..."></textarea>
+            <button class="action-btn" id="btn-create-commit">Commit with Delta Storage</button>
+          </div>
+
+          <div class="panel-header" style="margin-top: 1.5rem;">
+            <span>Three-Way Merge Conflict Tester</span>
+          </div>
+          <div class="merge-test-box">
+            <p class="sub-text">Demonstrates 3-way merge conflict detection between base ancestor, local branch, and remote branch.</p>
+            <button class="secondary-btn" id="btn-test-merge">Run 3-Way Merge Test</button>
+            <pre id="merge-test-result" class="merge-output-pre"></pre>
+          </div>
+        </div>
+
+        <div class="vcs-history-panel">
+          <div class="panel-header">
+            <span>Commit History & Deltas</span>
+            <button class="secondary-btn" id="btn-refresh-history">Refresh History</button>
+          </div>
+          <div id="vcs-history-list" class="history-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: LEADERBOARD (MAX-HEAP) & JUDGING -->
+    <section id="leaderboard-tab" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>Live Hackathon Leaderboard (Max-Heap DSA)</h2>
+          <p>Real-time tournament rankings powered by a C++ Max-Heap data structure with $O(\log n)$ score updates.</p>
+        </div>
+        <div class="leaderboard-actions">
+          <input type="text" id="leaderboard-search" class="styled-input search-box" placeholder="Search team or project...">
+          <button class="action-btn" id="btn-refresh-leaderboard">Refresh Rankings</button>
+        </div>
+      </div>
+
+      <div class="leaderboard-card">
+        <div class="table-wrapper">
+          <table class="data-table" id="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team & Project</th>
+                <th>Team Members</th>
+                <th>Quality</th>
+                <th>Perf</th>
+                <th>Func</th>
+                <th>Judge (Inno/UI/Pres)</th>
+                <th>Composite Score</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Judge Scoring Modal -->
+  <div id="judge-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Faculty / Judge Rubric Assessment</h3>
+        <button class="close-modal" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Assign subjective rubric scores for team: <strong id="modal-team-name">Team Name</strong></p>
+        
+        <div class="slider-group">
+          <div class="slider-label">
+            <span>Innovation & Originality (Weight: 10%)</span>
+            <span class="slider-val" id="val-inno">8.5 / 10</span>
+          </div>
+          <input type="range" id="slider-inno" min="0" max="10" step="0.5" value="8.5">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-label">
+            <span>User Interface & UX (Weight: 5%)</span>
+            <span class="slider-val" id="val-ui">8.0 / 10</span>
+          </div>
+          <input type="range" id="slider-ui" min="0" max="10" step="0.5" value="8.0">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-label">
+            <span>Communication & Presentation (Weight: 5%)</span>
+            <span class="slider-val" id="val-pres">9.0 / 10</span>
+          </div>
+          <input type="range" id="slider-pres" min="0" max="10" step="0.5" value="9.0">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" id="btn-cancel-modal">Cancel</button>
+        <button class="action-btn" id="btn-save-judge">Submit Judge Rubric</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
